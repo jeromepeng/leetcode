@@ -38,5 +38,34 @@ namespace median_of_two_sorted_arrays
             }
             return result;
         }
+
+        static int FindIndex(int a, int[] nums, int startIndex, int duartion)
+        {
+            int result = 0;
+            int middle = duartion / 2;
+            if (middle > 1)
+            {
+                if (nums[startIndex + middle] > a)
+                {
+                    result = FindIndex(a, nums, startIndex, middle);
+                }
+                else
+                {
+                    result = FindIndex(a, nums, startIndex + middle, middle);
+                }
+            }
+            else
+            {
+                if (nums[startIndex + middle] > a)
+                {
+                    result = startIndex + middle + 1;
+                }
+                else
+                {
+                    result = FindIndex(a, nums, startIndex + middle, middle);
+                }
+            }
+            return result;
+        }
     }
 }
